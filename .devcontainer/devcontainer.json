@@ -1,0 +1,33 @@
+{
+  "name": "FHIR Publisher Image",
+  "image": "hl7fhir/ig-publisher-base",
+  "forwardPorts": [
+    8080
+  ],
+  "remoteUser": "publisher",
+  "containerUser": "publisher",
+  "mounts": [
+    "source=${env:HOME}/.fhir,target=/home/publisher/.fhir,type=bind,consistency=cached"
+  ],
+  "initializeCommand": "mkdir -p ${env:HOME}/.fhir",
+  "remoteEnv": {
+    "LOCALHOST_FHIR_PATH": "/.fhir",
+    "DISPLAY": ""
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "MITRE-Health.vscode-language-fsh"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      }
+    }
+  },
+  "postStartCommand": "npm install -g fsh-sushi && ./ig-publisher-scripts/_updatePublisher.sh -y && npx --yes http-server output"
+}

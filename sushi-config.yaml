@@ -1,0 +1,42 @@
+id: org.example.fhir.uv.menstrual-cycle
+canonical: https://example.org/fhir/uv/menstrual-cycle
+name: MenstrualCycleDataExchange
+title: Menstrual Cycle Data Exchange
+description: >-
+  A draft FHIR R4 implementation guide for exchanging patient-generated
+  menstrual period diary and optional temperature data with a FHIR server.
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: ci-build
+jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
+publisher:
+  name: Menstrual Cycle Data Exchange Project
+
+parameters:
+  apply-jurisdiction: true
+  apply-publisher: true
+  apply-version: true
+
+pages:
+  index.md:
+    title: Home
+  data-model.md:
+    title: Data Model
+  exchange.md:
+    title: Exchange
+  privacy.md:
+    title: Privacy and Security
+
+menu:
+  Home: index.html
+  Guidance:
+    Data Model: data-model.html
+    Exchange: exchange.html
+    Privacy and Security: privacy.html
+  Artifacts: artifacts.html
+
+instanceOptions:
+  manualSliceOrdering: true
+  setMetaProfile: never
