@@ -209,6 +209,7 @@ Usage: #example
 * subject = Reference(example-patient)
 * effectivePeriod.start = "2026-07-03T23:10:00-05:00"
 * effectivePeriod.end = "2026-07-04T06:45:00-05:00"
+* performer = Reference(example-vendor-organization)
 * device = Reference(example-whoop-device)
 * valueQuantity.value = 33.8
 * valueQuantity.unit = "Cel"
@@ -227,6 +228,7 @@ Usage: #example
 * subject = Reference(example-patient)
 * effectivePeriod.start = "2026-07-03T22:50:00-05:00"
 * effectivePeriod.end = "2026-07-04T06:30:00-05:00"
+* performer = Reference(example-vendor-organization)
 * device = Reference(example-oura-ring)
 * valueQuantity.value = 0.28
 * valueQuantity.unit = "K"
@@ -244,6 +246,7 @@ Usage: #example
 * status = #final
 * subject = Reference(example-patient)
 * effectiveDateTime = "2026-07-04"
+* performer = Reference(example-vendor-organization)
 * device = Reference(example-fitbit-device)
 * valueQuantity.value = -0.17
 * valueQuantity.unit = "K"
@@ -278,6 +281,33 @@ Usage: #example
 * agent[author].who = Reference(example-vendor-organization)
 * agent[transmitter].who = Reference(example-vendor-organization)
 
+Instance: example-patient-app-bundle-provenance
+InstanceOf: MenstrualDataProvenance
+Title: "Example Patient App Bundle Provenance"
+Description: "Bundle-local provenance using transaction fullUrl references."
+Usage: #inline
+* target[0].reference = "urn:uuid:11111111-1111-4111-8111-111111111111"
+* target[1].reference = "urn:uuid:11111111-1111-4111-8111-111111111112"
+* target[2].reference = "urn:uuid:11111111-1111-4111-8111-111111111113"
+* target[3].reference = "urn:uuid:11111111-1111-4111-8111-111111111114"
+* target[4].reference = "urn:uuid:11111111-1111-4111-8111-111111111115"
+* target[5].reference = "urn:uuid:11111111-1111-4111-8111-111111111117"
+* recorded = "2026-07-07T14:30:00Z"
+* agent[author].who = Reference(example-patient)
+* agent[transmitter].who = Reference(example-vendor-organization)
+
+Instance: example-cloud-bundle-provenance
+InstanceOf: MenstrualDataProvenance
+Title: "Example Cloud Bundle Provenance"
+Description: "Bundle-local provenance using transaction fullUrl references."
+Usage: #inline
+* target[0].reference = "urn:uuid:22222222-2222-4222-8222-222222222224"
+* target[1].reference = "urn:uuid:22222222-2222-4222-8222-222222222225"
+* target[2].reference = "urn:uuid:22222222-2222-4222-8222-222222222226"
+* recorded = "2026-07-04T12:00:00Z"
+* agent[author].who = Reference(example-vendor-organization)
+* agent[transmitter].who = Reference(example-vendor-organization)
+
 Instance: example-patient-app-submission-bundle
 InstanceOf: MenstrualDataSubmissionBundle
 Title: "Example Patient App Submission Bundle"
@@ -285,42 +315,42 @@ Description: "A transaction Bundle containing a completed period, daily flow ent
 Usage: #example
 * type = #transaction
 * timestamp = "2026-07-07T14:30:00Z"
-* entry[+].fullUrl = "urn:uuid:example-period-complete"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111111"
 * entry[=].resource = example-period-complete
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/periods|period-2026-07"
-* entry[+].fullUrl = "urn:uuid:example-flow-day-1"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111112"
 * entry[=].resource = example-flow-day-1
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/events|flow-2026-07-03"
-* entry[+].fullUrl = "urn:uuid:example-flow-day-2"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111113"
 * entry[=].resource = example-flow-day-2
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/events|flow-2026-07-04"
-* entry[+].fullUrl = "urn:uuid:example-flow-day-3"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111114"
 * entry[=].resource = example-flow-day-3
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/events|flow-2026-07-05"
-* entry[+].fullUrl = "urn:uuid:example-flow-day-4"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111115"
 * entry[=].resource = example-flow-day-4
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/events|flow-2026-07-06"
-* entry[+].fullUrl = "urn:uuid:example-manual-thermometer"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111116"
 * entry[=].resource = example-manual-thermometer
 * entry[=].request.method = #POST
 * entry[=].request.url = "Device"
-* entry[+].fullUrl = "urn:uuid:example-basal-temperature-manual"
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111117"
 * entry[=].resource = example-basal-temperature-manual
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-cycle-app.example/events|bbt-2026-07-03"
-* entry[+].fullUrl = "urn:uuid:example-patient-app-provenance"
-* entry[=].resource = example-patient-app-provenance
+* entry[+].fullUrl = "urn:uuid:11111111-1111-4111-8111-111111111118"
+* entry[=].resource = example-patient-app-bundle-provenance
 * entry[=].request.method = #POST
 * entry[=].request.url = "Provenance"
 
@@ -331,34 +361,34 @@ Description: "A transaction Bundle containing vendor-derived wearable temperatur
 Usage: #example
 * type = #transaction
 * timestamp = "2026-07-04T12:00:00Z"
-* entry[+].fullUrl = "urn:uuid:example-oura-ring"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222221"
 * entry[=].resource = example-oura-ring
 * entry[=].request.method = #POST
 * entry[=].request.url = "Device"
-* entry[+].fullUrl = "urn:uuid:example-whoop-device"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222222"
 * entry[=].resource = example-whoop-device
 * entry[=].request.method = #POST
 * entry[=].request.url = "Device"
-* entry[+].fullUrl = "urn:uuid:example-fitbit-device"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222223"
 * entry[=].resource = example-fitbit-device
 * entry[=].request.method = #POST
 * entry[=].request.url = "Device"
-* entry[+].fullUrl = "urn:uuid:example-oura-temperature-deviation"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222224"
 * entry[=].resource = example-oura-temperature-deviation
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-oura.example/daily|oura-temp-dev-2026-07-03"
-* entry[+].fullUrl = "urn:uuid:example-whoop-skin-temperature"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222225"
 * entry[=].resource = example-whoop-skin-temperature
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-whoop.example/recovery|whoop-skin-temp-2026-07-03"
-* entry[+].fullUrl = "urn:uuid:example-fitbit-temperature-deviation"
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222226"
 * entry[=].resource = example-fitbit-temperature-deviation
 * entry[=].request.method = #POST
 * entry[=].request.url = "Observation"
 * entry[=].request.ifNoneExist = "identifier=https://example-fitbit.example/temperature|fitbit-temp-dev-2026-07-03"
-* entry[+].fullUrl = "urn:uuid:example-vendor-provenance"
-* entry[=].resource = example-vendor-provenance
+* entry[+].fullUrl = "urn:uuid:22222222-2222-4222-8222-222222222227"
+* entry[=].resource = example-cloud-bundle-provenance
 * entry[=].request.method = #POST
 * entry[=].request.url = "Provenance"

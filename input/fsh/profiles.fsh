@@ -85,6 +85,7 @@ Title: "Basal Body Temperature Observation"
 Description: "An absolute body temperature explicitly measured under basal resting conditions."
 * insert CycleObservationBase
 * obeys basal-body-temperature-code
+* code.coding 1..* MS
 * effective[x] only dateTime
 * effectiveDateTime 1..1 MS
 * insert QuantityWithUCUM
